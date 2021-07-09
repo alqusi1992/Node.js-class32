@@ -14,6 +14,7 @@ let server = http.createServer(function (req, res) {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.write(data);
       res.end();
+      return err
     });
   }
   if (req.url === "/index.js") {
@@ -21,6 +22,7 @@ let server = http.createServer(function (req, res) {
       res.writeHead(200, { "Content-Type": "application/javascript" });
       res.write(data);
       res.end();
+      return err
     });
   }
 
@@ -29,6 +31,8 @@ let server = http.createServer(function (req, res) {
       res.writeHead(200, { "Content-Type": "text/css" });
       res.write(data);
       res.end();
+      return err
+
     });
   }
 });
