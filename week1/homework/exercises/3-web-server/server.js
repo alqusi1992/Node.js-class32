@@ -11,28 +11,36 @@ let server = http.createServer(function (req, res) {
   // YOUR CODE GOES IN HERE
   if (req.url === "/") {
     fs.readFile(path.join(__dirname, "index.html"), (err, data) => {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(data);
-      res.end();
-      return err
+      try {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.write(data);
+        res.end();
+      } catch {
+        console.log(err);
+      }
     });
   }
   if (req.url === "/index.js") {
     fs.readFile(path.join(__dirname, "index.js"), (err, data) => {
-      res.writeHead(200, { "Content-Type": "application/javascript" });
-      res.write(data);
-      res.end();
-      return err
+      try {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.write(data);
+        res.end();
+      } catch {
+        console.log(err);
+      }
     });
   }
 
   if (req.url === "/style.css") {
     fs.readFile(path.join(__dirname, "style.css"), (err, data) => {
-      res.writeHead(200, { "Content-Type": "text/css" });
-      res.write(data);
-      res.end();
-      return err
-
+      try {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.write(data);
+        res.end();
+      } catch {
+        console.log(err);
+      }
     });
   }
 });
