@@ -13,19 +13,21 @@ app.get("/", function (req, res) {
 });
 
 app.post("/blogs", (req, res) => {
-  req.header("Content-Type");
-  const { title, content } = req.body;
+  
+  const { title } = req.body.title;
+  const { content } = req.body.content
   fs.writeFileSync(title, content);
   res.end("ok");
 });
 
 app.put("/posts/:title", (req, res) => {
-  const { title, content } = req.body;
+ const { title } = req.body.title;
+  const { content } = req.body.content
   if (fs.existsSync(title)) {
     fs.writeFileSync(title, content);
     res.end("ok");
   } else {
-    res.status(400).json({ msg: "This post does not exist!" });
+    res.status(404).json({ msg: "This post does not exist!" });
   }
 });
 
@@ -38,7 +40,7 @@ app.delete("/blogs/:title", (req, res) => {
     res.end("ok");
   } else {
     // Respond with message here
-    res.status(400).json({ msg: `Title not found` });
+    res.status(404).json({ msg: `Title not found` });
   }
 });
 
@@ -51,7 +53,7 @@ app.get("/blogs/:title", (req, res) => {
     // send response
     res.json(post);
   } else {
-    res.status(400).send(`This post does not exist!`);
+    res.status(404).send(`This post does not exist!`);
   }
 });
 
