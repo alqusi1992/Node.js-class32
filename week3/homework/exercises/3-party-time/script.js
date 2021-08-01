@@ -12,14 +12,17 @@ const fetch = require("node-fetch");
 
 async function makeReservation() {
   try {
-    const response = await fetch(
+   const response = await fetch(
       "https://reservation100-sandbox.mxapps.io/api/reservations",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ numbers: 5, Name: "Mohammad al-qusi" }),
+        body: JSON.stringify({
+          name: "Mohammad alqusi",
+          numberOfPeople: 5,
+        }),
       }
     );
     const content = await response.json();
